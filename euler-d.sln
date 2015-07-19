@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{3947E667-4C90-4C3A-BEB9-7148D6FE0D7C}") = "euler-d", "euler-d\euler-d.dproj", "{3D8B0833-8F7C-46F4-A314-921DF5F18F64}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Unittest|Any CPU = Unittest|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D8B0833-8F7C-46F4-A314-921DF5F18F64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D8B0833-8F7C-46F4-A314-921DF5F18F64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D8B0833-8F7C-46F4-A314-921DF5F18F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D8B0833-8F7C-46F4-A314-921DF5F18F64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D8B0833-8F7C-46F4-A314-921DF5F18F64}.Unittest|Any CPU.ActiveCfg = Unittest|Any CPU
+		{3D8B0833-8F7C-46F4-A314-921DF5F18F64}.Unittest|Any CPU.Build.0 = Unittest|Any CPU
+	EndGlobalSection
+EndGlobal
