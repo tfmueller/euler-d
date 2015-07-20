@@ -198,8 +198,10 @@ auto primefacs(T)(T num)
 		return T[].init;
 	}
 	
-	return iota(2, sqrt(num))
-		.chain(num)
-		.filter!(x => !(num % x))
-		.front;
+	return sqrt(num)
+		.apply!(ns => iota(2, ns)
+			.chain(num)
+			.filter!(x => !(num % x))
+			.front
+			.apply!(x => [x] ~ ns.primefacs));
 }
