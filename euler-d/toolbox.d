@@ -189,3 +189,17 @@ auto dropWhile(alias f, R)(R r)
 {
 	return r.drop(r.countUntil!(e => !f(e)));
 }
+
+auto primefacs(T)(T num)
+	if(isUnsigned!T)
+{
+	if(num < 2)
+	{
+		return T[].init;
+	}
+	
+	return iota(2, sqrt(num))
+		.chain(num)
+		.filter!(x => !(num % x))
+		.front;
+}
