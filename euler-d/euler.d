@@ -31,9 +31,18 @@ auto problem3()
 		.primefacs[$ - 1];
 }
 
+auto problem4()
+{
+	return iota(101U, 1000U)
+		.map!(x => iota(100U, x)
+			.map!(y => (x * y)))
+		.rfilter!ispalindrome
+		.rmax;
+}
+
 void main(string[] args)
 {
-	problem2.writeln;
+	problem4.writeln;
 	
 	// Lets the user press <Return> before program returns
 	stdin.readln();

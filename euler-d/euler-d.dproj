@@ -45,5 +45,6 @@
   <ItemGroup>
     <Compile Include="euler.d" />
     <Compile Include="toolbox.d" />
+    <Compile Include="dataset.d" />
   </ItemGroup>
 </Project>

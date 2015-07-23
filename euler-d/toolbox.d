@@ -5,7 +5,9 @@ import std.algorithm,
 	std.traits,
 	std.range,
 	std.array,
-	std.conv;
+	std.conv,
+	std.math,
+	std.stdio;
 
 auto apply(alias f, T...)(T t)
 	if(is(typeof(f(t))))
@@ -175,6 +177,14 @@ auto fibonacci(T)(T first, T second)
 }
 
 auto sum(R)(R r){	return r.reduce!((acc, x) => acc + x); }
+auto prod(R)(R r){	return r.reduce!((acc, x) => acc * x); }
+auto max(R)(R r){	return r.reduce!((acc, x) => acc > x ? acc : x); }
+auto min(R)(R r){	return r.reduce!((acc, x) => acc < x ? acc : x); }
+
+auto rsum(R)(R r){	return r.rreduce!((acc, x) => acc + x); }
+auto rprod(R)(R r){	return r.rreduce!((acc, x) => acc * x); }
+auto rmax(R)(R r){	return r.rreduce!((acc, x) => acc > x ? acc : x); }
+auto rmin(R)(R r){	return r.rreduce!((acc, x) => acc < x ? acc : x); }
 
 auto takeWhile(alias f, R)(R r)
 	if((RangeDim!R == 1) &&
@@ -190,18 +200,38 @@ auto dropWhile(alias f, R)(R r)
 	return r.drop(r.countUntil!(e => !f(e)));
 }
 
-auto primefacs(T)(T num)
+auto isqrt(T)(T num)
+	if(isIntegral!T)
+{
+	return num.to!real
+		.sqrt
+		.to!T;
+}
+
+T[] primefacs(T)(T num)
 	if(isUnsigned!T)
 {
-	if(num < 2)
+	if(num == 1)
 	{
 		return T[].init;
 	}
+	if(num == 2)
+	{
+		return [2.to!T];
+	}
 	
-	return sqrt(num)
-		.apply!(ns => iota(2, ns)
-			.chain(num)
+	return num.isqrt
+		.apply!(ns => iota(2.to!T, ns)
+			.chain(num.only)
 			.filter!(x => !(num % x))
 			.front
-			.apply!(x => [x] ~ ns.primefacs));
+			.apply!(x => [x] ~ (num / x).primefacs));
+}
+
+bool ispalindrome(T)(T num)
+	if(isUnsigned!T)
+{
+	return num.to!string
+		.apply!(ns => ns.retro
+			.equal(ns));
 }
