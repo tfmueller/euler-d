@@ -7,6 +7,7 @@ import std.algorithm,
 	std.array,
 	std.conv,
 	std.math,
+	std.numeric,
 	std.stdio;
 
 auto apply(alias f, T...)(T t)
@@ -176,7 +177,6 @@ auto fibonacci(T)(T first, T second)
 		.recurrence!((a, n) => a[n - 2] + a[n - 1]);
 }
 
-auto sum(R)(R r){	return r.reduce!((acc, x) => acc + x); }
 auto prod(R)(R r){	return r.reduce!((acc, x) => acc * x); }
 auto max(R)(R r){	return r.reduce!((acc, x) => acc > x ? acc : x); }
 auto min(R)(R r){	return r.reduce!((acc, x) => acc < x ? acc : x); }
@@ -226,6 +226,12 @@ T[] primefacs(T)(T num)
 			.filter!(x => !(num % x))
 			.front
 			.apply!(x => [x] ~ (num / x).primefacs));
+}
+
+auto lcm(T)(T x, T y)
+	if(isIntegral!T)
+{
+	return x * y / gcd(x, y);
 }
 
 bool ispalindrome(T)(T num)
