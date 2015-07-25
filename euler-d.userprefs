@@ -1,19 +1,10 @@
 ﻿<Properties StartupItem="euler-d/euler-d.dproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="euler-d/toolbox.d">
+  <MonoDevelop.Ide.Workbench ActiveDocument="euler-d/euler.d">
     <Files>
-      <File FileName="euler-d/euler.d" Line="1" Column="1" />
-      <File FileName="euler-d/toolbox.d" Line="92" Column="1" />
+      <File FileName="euler-d/euler.d" Line="47" Column="2" />
+      <File FileName="euler-d/toolbox.d" Line="10" Column="14" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="euler-d" expanded="True">
-            <Node name="euler-d" expanded="True" selected="True" />
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

@@ -17,4 +17,16 @@ Global
 		{3D8B0833-8F7C-46F4-A314-921DF5F18F64}.Unittest|Any CPU.ActiveCfg = Unittest|Any CPU
 		{3D8B0833-8F7C-46F4-A314-921DF5F18F64}.Unittest|Any CPU.Build.0 = Unittest|Any CPU
 	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.FileWidth = 120
+		$1.inheritsSet = VisualStudio
+		$1.inheritsScope = text/plain
+		$1.scope = text/x-d
+		$0.DFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-d
+		$2.scope = text/x-d
+	EndGlobalSection
 EndGlobal
