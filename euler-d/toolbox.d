@@ -131,13 +131,13 @@ auto rfilter(alias f, R)(R r)
     }
 }
 
-auto tmap(R)(R r)
+auto tmap(alias f, R)(R r)
     if((RangeDim!R == 1) && isTuple!(ElementType!R))
 {
     return r.map!(t => t.bind!f);
 }
 
-auto tfilter(R)(R r)
+auto tfilter(alias f, R)(R r)
     if((RangeDim!R == 1) && isTuple!(ElementType!R))
 {
     return r.filter!(t => t.bind!f);
@@ -266,4 +266,18 @@ auto iotai(T)(T start, T end, T step = 1.to!T)
     if(isIntegral!T)
 {
     return iota(start, end + ((end - start) % step ? 0 : step), step);
+}
+
+auto rfront(R)(R r)
+    if(RangeDim!R > 0)
+{
+    static if(RangeDim!R > 1)
+    {
+        return r.front
+            .rfront;
+    }
+    else
+    {
+        return r.front;
+    }
 }

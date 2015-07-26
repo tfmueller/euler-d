@@ -75,6 +75,18 @@ auto problem8()
         .max;
 }
 
+auto problem9()
+{
+    return iotai(1, 1000)
+        .map!(x => iotai(1, 1000 - x)
+            .map!(y => (1000 - x - y)
+                .apply!(z => tuple(x, y, z)))
+            .tfilter!((x, y, z) => y < z))
+        .trfilter!((x, y, z) => x^^2 + y^^2 == z^^2)
+        .rfront
+        .bind!((x, y, z) => x*y*z);
+}
+
 auto testproblem()
 {
     return 0;
@@ -82,7 +94,7 @@ auto testproblem()
 
 void main(string[] args)
 {
-    problem8.writeln;
+    problem9.writeln;
     
     // Lets the user press <Return> before program returns
     stdin.readln();
