@@ -77,8 +77,8 @@ auto problem8()
 
 auto problem9()
 {
-    return iotai(1, 1000)
-        .map!(x => iotai(1, 1000 - x)
+    return iota(1, 1000)
+        .map!(x => iota(x + 1, 1000)
             .map!(y => (1000 - x - y)
                 .apply!(z => tuple(x, y, z)))
             .tfilter!((x, y, z) => y < z))
