@@ -5,7 +5,8 @@ import std.stdio,
     std.range,
     std.conv,
     std.typecons,
-    toolbox;
+    toolbox,
+    dataset;
 
 auto problem1()
 {
@@ -57,14 +58,31 @@ auto problem6()
                 squareofsums - sumofsquares));
 }
 
+auto problem7()
+{
+    return 1000000U
+        .primes
+        .drop(10000)
+        .front;
+}
+
+auto problem8()
+{
+    return iotai(0, p8data.length - 13)
+        .map!(x => p8data[x..x + 13]
+            .map!(c => (c - '0').to!ulong)
+            .prod)
+        .max;
+}
+
 auto testproblem()
 {
-    return [[1, 2, 3], [4, 5, 6], [7, 8, 9, 10]].rsum;
+    return 0;
 }
 
 void main(string[] args)
 {
-    problem6.writeln;
+    problem8.writeln;
     
     // Lets the user press <Return> before program returns
     stdin.readln();

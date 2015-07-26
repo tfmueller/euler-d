@@ -241,3 +241,29 @@ bool ispalindrome(T)(T num)
         .apply!(ns => ns.retro
             .equal(ns));
 }
+
+T[] primes(T)(T num)
+    if(isUnsigned!T)
+{
+    if(num == 2)
+    {
+        return [2];
+    }
+    if(num == 3)
+    {
+        return [2, 3];
+    }
+
+    return num.isqrt
+        .apply!(ns => ns.primes
+            .apply!(nsp => nsp
+                .chain(iota(ns, num + 1)
+                    .filter!(n => nsp.all!(x => n % x)))))
+        .array;
+}
+
+auto iotai(T)(T start, T end, T step = 1.to!T)
+    if(isIntegral!T)
+{
+    return iota(start, end + ((end - start) % step ? 0 : step), step);
+}
