@@ -79,8 +79,7 @@ auto problem9()
 {
     return iota(1, 1000)
         .map!(x => iota(x + 1, 1000)
-            .map!(y => (1000 - x - y)
-                .apply!(z => tuple(x, y, z)))
+            .map!(y => tuple(x, y, 1000 - x - y))
             .tfilter!((x, y, z) => y < z))
         .trfilter!((x, y, z) => x^^2 + y^^2 == z^^2)
         .rfront
