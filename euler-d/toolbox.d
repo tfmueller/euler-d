@@ -245,18 +245,14 @@ bool ispalindrome(T)(T num)
 T[] primes(T)(T num)
     if(isUnsigned!T)
 {
-    if(num == 2)
+    if(num <= 2)
     {
         return [2];
-    }
-    if(num == 3)
-    {
-        return [2, 3];
     }
 
     return num.isqrt
         .apply!(ns => ns.primes
-            .apply!(nsp => nsp
+            .apply!((in nsp) => nsp
                 .chain(iota(ns, num + 1)
                     .filter!(n => nsp.all!(x => n % x)))))
         .array;

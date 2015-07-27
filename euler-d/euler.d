@@ -25,7 +25,7 @@ auto problem2()
 
 auto problem3()
 {
-    return 600851475143UL
+    return 600_851_475_143UL
         .primefacs[$ - 1];
 }
 
@@ -60,9 +60,9 @@ auto problem6()
 
 auto problem7()
 {
-    return 1000000U
+    return 100_0000U
         .primes
-        .drop(10000)
+        .drop(10_000)
         .front;
 }
 
@@ -79,11 +79,18 @@ auto problem9()
 {
     return iota(1, 1000)
         .map!(x => iota(x + 1, 1000)
-            .map!(y => tuple(x, y, 1000 - x - y))
-            .tfilter!((x, y, z) => y < z))
-        .trfilter!((x, y, z) => x^^2 + y^^2 == z^^2)
+            .map!(y => tuple(x, y, 1000 - x - y)))
+        .trfilter!((x, y, z) => (y < z) && (x^^2 + y^^2 == z^^2))
         .rfront
-        .bind!((x, y, z) => x*y*z);
+        .expand
+        .only
+        .prod;
+}
+
+auto problem10()
+{
+    return 2_000_000UL.primes
+        .sum;
 }
 
 auto testproblem()
@@ -93,7 +100,7 @@ auto testproblem()
 
 void main(string[] args)
 {
-    problem9.writeln;
+    problem10.writeln;
     
     // Lets the user press <Return> before program returns
     stdin.readln();
