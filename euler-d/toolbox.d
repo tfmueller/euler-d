@@ -177,14 +177,14 @@ auto fibonacci(T)(T first, T second)
         .recurrence!((a, n) => a[n - 2] + a[n - 1]);
 }
 
-auto prod(R)(R r){    return r.reduce!((acc, x) => acc * x); }
-auto max(R)(R r){    return r.reduce!((acc, x) => acc > x ? acc : x); }
-auto min(R)(R r){    return r.reduce!((acc, x) => acc < x ? acc : x); }
+auto prod(R)(R r){  return r.reduce!((acc, x) => acc * x); }
+auto max(R)(R r){   return r.reduce!((acc, x) => acc > x ? acc : x); }
+auto min(R)(R r){   return r.reduce!((acc, x) => acc < x ? acc : x); }
 
-auto rsum(R)(R r){    return r.rreduce!((acc, x) => acc + x); }
-auto rprod(R)(R r){    return r.rreduce!((acc, x) => acc * x); }
-auto rmax(R)(R r){    return r.rreduce!((acc, x) => acc > x ? acc : x); }
-auto rmin(R)(R r){    return r.rreduce!((acc, x) => acc < x ? acc : x); }
+auto rsum(R)(R r){  return r.rreduce!((acc, x) => acc + x); }
+auto rprod(R)(R r){ return r.rreduce!((acc, x) => acc * x); }
+auto rmax(R)(R r){  return r.rreduce!((acc, x) => acc > x ? acc : x); }
+auto rmin(R)(R r){  return r.rreduce!((acc, x) => acc < x ? acc : x); }
 
 auto takeWhile(alias f, R)(R r)
     if((RangeDim!R == 1) &&

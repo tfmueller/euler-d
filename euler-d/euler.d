@@ -93,6 +93,23 @@ auto problem10()
         .sum;
 }
 
+auto problem11()
+{
+    return tuple(p11data.length, p11data[0].length)
+        .bind!((nrows, ncols) =>
+            only(tuple(0, ncols - 3, 0, nrows, 1, 0),
+                 tuple(0, ncols - 3, 0, nrows - 3, 1, 1),
+                 tuple(0, ncols, 0, nrows - 3, 0, 1),
+                 tuple(3, ncols, 0, nrows - 3, -1, 1))
+            .tmap!((xstart, xend, ystart, yend, xstep, ystep) =>
+                 iota(xstart, xend)
+                    .map!(x => iota(ystart, yend)
+                        .map!(y => iotai(0, 3)
+                            .map!(n => p11data[y + n*ystep][x + n*xstep])
+                            .prod))))
+        .rmax;
+}
+
 auto testproblem()
 {
     return 0;
@@ -100,7 +117,7 @@ auto testproblem()
 
 void main(string[] args)
 {
-    problem10.writeln;
+    problem11.writeln;
     
     // Lets the user press <Return> before program returns
     stdin.readln();
