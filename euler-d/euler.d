@@ -109,6 +109,22 @@ auto problem11()
         .rmax;
 }
 
+auto problem12()
+{
+    return triangle
+        .drop(1)
+        .map!(tri => tuple(tri, tri.primefacs
+            .apply!((ref r) => r.uniq
+                .apply!((ref u) => u
+                    .map!(uf => r
+                        .count!(rf => rf == uf) + 1)
+                    .prod))))
+        .dropWhile!(t => t
+            .bind!((tri, nf) => nf <= 500))
+        .front
+        .bind!((tri, nf) => tri);
+}
+
 auto testproblem()
 {
     return 0;
@@ -116,7 +132,7 @@ auto testproblem()
 
 void main(string[] args)
 {
-    problem11.writeln;
+    problem12.writeln;
     
     // Lets the user press <Return> before program returns
     stdin.readln();

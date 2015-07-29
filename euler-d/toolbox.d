@@ -277,3 +277,11 @@ auto rfront(R)(R r)
         return r.front;
     }
 }
+
+auto triangle()
+{
+    return tuple(1UL, 2)
+        .recurrence!((a, n) => a[n - 1]
+            .bind!((tri, add) => tuple(tri + add, add + 1)))
+        .tmap!((tri, add) => tri);
+}
