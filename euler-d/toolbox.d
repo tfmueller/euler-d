@@ -8,7 +8,7 @@ import std.algorithm,
     std.conv,
     std.math,
     std.numeric,
-    std.stdio;
+    std.bigint;
 
 auto apply(alias f, T...)(T t)
     if(is(typeof(f(t))))
@@ -261,7 +261,7 @@ T[] primes(T)(T num)
 auto iotai(T)(T start, T end, T step = 1.to!T)
     if(isIntegral!T)
 {
-    return iota(start, end + ((end - start) % step ? 0 : step), step);
+    return iota(start, end + ((end - start) % step ? 0.to!T : step), step);
 }
 
 auto rfront(R)(R r)
@@ -284,4 +284,25 @@ auto triangle()
         .recurrence!((a, n) => a[n - 1]
             .bind!((tri, add) => tuple(tri + add, add + 1)))
         .tmap!((tri, add) => tri);
+}
+
+auto factorial(T)(T t)
+    if(isUnsigned!T)
+{
+    if(t == 0.to!T)
+    {
+        return 1.to!BigInt;
+    }
+
+    return iotai(1.to!T, t)
+        .map!(x => x.to!BigInt)
+        .prod;
+}
+
+auto ncr(T)(T n, T r)
+    if(isUnsigned!T)
+{
+    return (n.factorial / (r.factorial * (n - r).factorial))
+        .toLong
+        .to!T;
 }

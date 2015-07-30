@@ -5,6 +5,7 @@ import std.stdio,
     std.range,
     std.conv,
     std.typecons,
+    std.bigint,
     toolbox,
     dataset;
 
@@ -114,8 +115,8 @@ auto problem12()
     return triangle
         .drop(1)
         .map!(tri => tuple(tri, tri.primefacs
-            .apply!((ref r) => r.uniq
-                .apply!((ref u) => u
+            .apply!((in r) => r.uniq
+                .apply!((in u) => u
                     .map!(uf => r
                         .count!(rf => rf == uf) + 1)
                     .prod))))
@@ -125,6 +126,21 @@ auto problem12()
         .bind!((tri, nf) => tri);
 }
 
+auto problem13()
+{
+    return p13data
+        .map!((in s) => s.to!BigInt)
+        .sum
+        .toDecimalString
+        .take(10);
+}
+
+auto problem15()
+{
+    return tuple(20UL, 20UL)
+        .bind!((x, y) => (x + y).ncr(x));
+}
+
 auto testproblem()
 {
     return 0;
@@ -132,7 +148,7 @@ auto testproblem()
 
 void main(string[] args)
 {
-    problem12.writeln;
+    problem15.writeln;
     
     // Lets the user press <Return> before program returns
     stdin.readln();
