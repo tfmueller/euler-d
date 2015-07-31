@@ -9,6 +9,7 @@ import std.stdio,
     toolbox,
     dataset;
 
+//Add all the natural numbers below 1000 that are multiples of 3 or 5.
 auto problem1()
 {
     return iota(1000)
@@ -16,6 +17,7 @@ auto problem1()
         .sum;
 }
 
+//Find the sum of all the even-valued terms in the Fibonacci < 4 million.
 auto problem2()
 {
     return fibonacci(1, 2)
@@ -24,12 +26,14 @@ auto problem2()
         .sum;
 }
 
+//Find the largest prime factor of a composite number.
 auto problem3()
 {
     return 600_851_475_143UL
         .primefacs[$ - 1];
 }
 
+//Find the largest palindrome made from the product of two 3-digit numbers.
 auto problem4()
 {
     return iota(101U, 1000U)
@@ -39,12 +43,16 @@ auto problem4()
         .rmax;
 }
 
+//What is the smallest positive number that is evenly divisible by all of
+//the numbers from 1 to 20?
 auto problem5()
 {
     return iota(20U, 0U, -1)
         .reduce!((acc, x) => lcm(acc, x));
 }
 
+//Find the difference between the sum of the squares of the first one 
+//hundred natural numbers and the square of the sum.
 auto problem6()
 {
     return tuple(1, 100)
@@ -59,6 +67,7 @@ auto problem6()
                 squareofsums - sumofsquares));
 }
 
+//What is the 10001st prime number?
 auto problem7()
 {
     return 100_0000U
@@ -67,6 +76,7 @@ auto problem7()
         .front;
 }
 
+//Find the greatest product of thirteen consecutive digits in the 1000-digit number.
 auto problem8()
 {
     return iotai(0, p8data.length - 13)
@@ -76,6 +86,8 @@ auto problem8()
         .max;
 }
 
+//There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+//Find the product abc.
 auto problem9()
 {
     return iota(1, 1000)
@@ -88,12 +100,15 @@ auto problem9()
         .prod;
 }
 
+//Find the sum of all the primes below two million.
 auto problem10()
 {
     return 2_000_000UL.primes
         .sum;
 }
 
+//What is the greatest product of four adjacent numbers in any direction
+//(up, down, left, right, or diagonally) in the 20x20 grid?
 auto problem11()
 {
     return tuple(p11data.length, p11data[0].length)
@@ -109,7 +124,8 @@ auto problem11()
                         .prod))))
         .rmax;
 }
-
+//What is the value of the first triangle number to have over five
+//hundred divisors?
 auto problem12()
 {
     return triangle
@@ -126,6 +142,8 @@ auto problem12()
         .bind!((tri, nf) => tri);
 }
 
+//Work out the first ten digits of the sum of the following one hundred
+//50-digit numbers.
 auto problem13()
 {
     return p13data
@@ -135,6 +153,9 @@ auto problem13()
         .take(10);
 }
 
+//The following iterative sequence is defined for the set of positive 
+//integers: n -> n/2 (n is even), n -> 3n + 1 (n is odd). Which starting 
+//number, under one million, produces the longest chain?
 auto problem15()
 {
     return tuple(20UL, 20UL)
